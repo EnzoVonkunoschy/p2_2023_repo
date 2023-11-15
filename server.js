@@ -23,6 +23,30 @@ app.post('/nuevo', (req,res)=>{
     res.sendFile(path.join(__dirname,'./static/menu.html'))
 })
 
+app.get('/obtener', (req,res)=>{
+    console.log("--get/obtener-->[server]")
+    console.log(req.body)
+
+    let data = Controlador.obtener()
+
+    str = ""; str2 = ""
+    str += "<h1>Mi Almacen</h1>"
+    for(var i=0 ; i<data.length ; i++){
+
+        if(data[i].impuestos){
+            str2 = "paga"
+        }else{
+            str2 = "exento"
+        }
+
+        str += "<p>"+data[i].nombre+"     "+data[i].cantidad+"    "+str2+"<p>"
+    }
+    
+    str += "<a href='http://localhost:3000'>Volver</a>";
+
+    res.send(str);
+   
+})
 app.listen(port, ()=>{
     console.log('Escuchando en el puerto ${port}')
 });

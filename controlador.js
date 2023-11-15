@@ -10,4 +10,8 @@ function nuevo(data){
     Modelo.guardar(miMercaderia);
 }
 
-module.exports = {nuevo}
+function obtener(){
+    return Modelo.obtener();
+}
+
+module.exports = {nuevo, obtener}
